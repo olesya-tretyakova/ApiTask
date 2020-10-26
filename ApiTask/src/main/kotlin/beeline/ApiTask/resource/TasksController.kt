@@ -1,5 +1,6 @@
-package beeline.ApiTask
-
+package beeline.ApiTask.resource
+import beeline.ApiTask.model.Task
+import beeline.ApiTask.repository.TaskRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -7,10 +8,10 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/v1/api/tasks")
-class TasksController {
+class TaskController {
 
     @Autowired
-    lateinit var repository: TasksRepository
+    lateinit var repository: TaskRepository
 
     @GetMapping
     fun getAllTasks() = repository.findAll()
@@ -23,14 +24,14 @@ class TasksController {
     }
 
     @PostMapping
-    fun addTask(@RequestBody task:Tasks?):ResponseEntity<Any>{
+    fun addTask(@RequestBody task: Task?):ResponseEntity<Any>{
         if (task == null) return ResponseEntity("Нет данных в запросе", HttpStatus.BAD_REQUEST)
         val saved = repository.save(task)
         return ResponseEntity("Задача сохранена под номером Id=${saved.id}", HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")
-    fun putTaskById(@PathVariable id:Long, @RequestBody task: Tasks?): ResponseEntity<Any>{
+    fun putTaskById(@PathVariable id:Long, @RequestBody task: Task?): ResponseEntity<Any>{
         return when {
             task == null -> ResponseEntity("Нет данных в запросе", HttpStatus.BAD_REQUEST)
             repository.findById(id).isEmpty -> notFoundResponse(id)

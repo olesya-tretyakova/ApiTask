@@ -1,4 +1,4 @@
-package beeline.ApiTask
+package beeline.ApiTask.service
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

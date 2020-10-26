@@ -1,7 +1,8 @@
-package beeline.ApiTask
+package beeline.ApiTask.repository
 
+import beeline.ApiTask.model.Task
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TasksRepository:CrudRepository<Tasks,Long>
+interface TaskRepository:CrudRepository<Task,Long>
