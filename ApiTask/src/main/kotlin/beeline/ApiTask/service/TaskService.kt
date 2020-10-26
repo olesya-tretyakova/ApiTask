@@ -1,11 +1,11 @@
-package beeline.ApiTask.resource
+package beeline.ApiTask.service
 
 import beeline.ApiTask.model.Task
 import beeline.ApiTask.repository.TaskRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.RequestBody
 
 @Service
 class TaskService(private val repository: TaskRepository) {
